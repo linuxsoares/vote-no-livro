@@ -18,7 +18,8 @@ public class Livros extends Model {
 
     private static final long serialVersionUID = 1L;
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     public long id;
 
     public String titulo;

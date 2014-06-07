@@ -24,6 +24,7 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
+                <li><a href="/lista">Lista de Livros</a></li>
                 <li><a href="/sobre">Sobre o sistema</a></li>
                 <li><a href="/play">Sobre o Play Framework</a></li>
                 <li><a href="http://getbootstrap.com/">Sobre o Bootstrap</a></li>
@@ -40,6 +41,8 @@
             @for(livro <- livros) {
             <tr>
                 <th><a href="@routes.Livro.list()">@livro.titulo</a></th>
+                <th><a href="@routes.Livro.list()">@livro.voto</a></th>
+                <th><a href="@routes.Livro.voto(livro.id)">Vote aqui</a></th>
             </tr>
             }
             </tfoot>
