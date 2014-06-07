@@ -3,16 +3,16 @@
 
 # --- !Ups
 
-create table livros (
-  id                        bigint not null,
+create table livro (
+  id_livro                  bigint not null,
   titulo                    varchar(255),
   autor                     varchar(255),
   descricao                 varchar(255),
   voto                      integer,
-  constraint pk_livros primary key (id))
+  constraint pk_livro primary key (id_livro))
 ;
 
-create sequence livros_seq;
+create sequence livro_seq;
 
 
 
@@ -21,9 +21,9 @@ create sequence livros_seq;
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists livros;
+drop table if exists livro;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
-drop sequence if exists livros_seq;
+drop sequence if exists livro_seq;
 

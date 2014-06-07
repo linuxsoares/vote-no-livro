@@ -7,10 +7,10 @@ GET     /play                      controllers.Application.index()
 GET     /sobre                     controllers.Application.index()
 GET     /                          controllers.Inicio.inicio()
 
-GET     /lista                     controllers.Livro.list()
+GET     /lista                     controllers.Livros.list()
 
-POST    /voto/:id                  controllers.Livro.voto(id:Long)
-GET    /voto/:id                  controllers.Livro.voto(id:Long)
+POST    /voto/:id                  controllers.Livros.voto(id:Long)
+GET    /voto/:id                   controllers.Livros.voto(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file              controllers.Assets.at(path="/public", file)

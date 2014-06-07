@@ -1,53 +1,36 @@
-@(livros: List[Livros])
+@(livros: List[Livro])
+
+@import helper._
 
 @main("Vote no Livro"){
-<title>Vote no Livro</title>
-<link href='@routes.Assets.at("bootstrap/css/bootstrap.min.css")' rel="stylesheet" media="screen">
+    <title>Vote no Livro</title>
+    <link href='@routes.Assets.at("bootstrap/css/bootstrap.min.css")' rel="stylesheet" media="screen">
 
-<style>
-    body{
-    padding-top: 50px;
-    }
-    .starter-template {
-    padding: 40px 15px;
-    text-align: center;
-    }
-</style>
-
-<div class="navbar navbar-inverse navbar-fixed-top">
+    <style>
+        body{
+        padding-top: 50px;
+        }
+        .starter-template {
+        padding: 40px 15px;
+        text-align: center;
+        }
+    </style>
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle"
-                    data-toggle="collapse" data-target=".navbar-collapse">
-            </button>
-            <a class="navbar-brand" href="/">Vote no Livro</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/lista">Lista de Livros</a></li>
-                <li><a href="/sobre">Sobre o sistema</a></li>
-                <li><a href="/play">Sobre o Play Framework</a></li>
-                <li><a href="http://getbootstrap.com/">Sobre o Bootstrap</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="starter-template">
-        <h1>Vote no Livro</h1>
-        <p class="lead">Vote no seu livro preferido.</p>
-        <table class="table table-striped table-bordered" id="example" cellpadding="0" cellspacing="0" border="0" width="100%">
-            <tfoot>
-            @for(livro <- livros) {
-            <tr>
-                <th><a href="@routes.Livro.list()">@livro.titulo</a></th>
-                <th><a href="@routes.Livro.list()">@livro.voto</a></th>
-                <th><a href="@routes.Livro.voto(livro.id)">Vote aqui</a></th>
-            </tr>
-            }
-            </tfoot>
-        </table>
+        <div class="starter-template">
+            <h1>Vote no Livro</h1>
+            <p class="lead">Vote no seu livro preferido.</p>
+            <table class="table table-striped table-bordered" id="example" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tfoot>
+                @for(livro <- livros) {
+                <tr>
+                    <th><a href="#">@livro.titulo</a></th>
+                    <th><a href="#">@livro.voto</a></th>
+                    <th><a href="@routes.Livros.voto(livro.idLivro)">Vote aqui</a></th>
+                </tr>
+                }
+                </tfoot>
+            </table>
 
+        </div>
     </div>
-</div>
 }
