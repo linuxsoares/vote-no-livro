@@ -1,3 +1,37 @@
-@main("Vote no Livro"){
-            
+@(usuarioForm : Form[Usuario])
+
+@main("Novo Usuario"){
+    <style>
+        body{
+        padding-top: 50px;
+        }
+        .starter-template {
+        padding: 40px 15px;
+        text-align: center;
+        }
+    </style>
+        @helper.form(action=routes.UsuarioController.salvarUsuario()){
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Novo Usuario</legend>
+                <div class="control-group">
+                    <div class="controls">
+                        @helper.inputText(usuarioForm("Nome"))
+                        <p class="help-block">informe o nome do usuario</p>
+                    </div>
+                    <div class="controls">
+                        @helper.inputText(usuarioForm("Email"))
+                        <p class="help-block">informe o email do usuario</p>
+                    </div>
+                </div>
+                }
+                <div class="control-group">
+                    <label class="control-label" for="singlebutton"></label>
+                    <div class="controls">
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary">Gravar</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+
 }

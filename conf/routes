@@ -3,14 +3,17 @@
 # ~~~~
 
 # Home page
-GET     /play                      controllers.Application.index()
-GET     /sobre                     controllers.Application.index()
-GET     /                          controllers.Inicio.inicio()
+GET     /play                      controllers.ApplicationController.index()
+GET     /sobre                     controllers.ApplicationController.index()
+GET     /                          controllers.InicioController.inicio()
 
-GET     /lista                     controllers.Livros.list()
+GET     /lista                     controllers.LivrosController.list()
 
-POST    /voto/:id                  controllers.Livros.voto(id:Long)
-GET    /voto/:id                   controllers.Livros.voto(id:Long)
+POST    /voto/:id                  controllers.LivrosController.voto(id:Long)
+GET     /voto/:id                  controllers.LivrosController.voto(id:Long)
+
+POST     /usuario                  controllers.UsuarioController.salvarUsuario()
+GET      /usuario/novo             controllers.UsuarioController.formCadastroUsuario()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file              controllers.Assets.at(path="/public", file)

@@ -14,7 +14,7 @@ import play.mvc.Result;
 /**
  * Created by gilmar on 05/06/14.
  */
-public class Livros extends Controller {
+public class LivrosController extends Controller {
 
     private static final Form<Livro> livroForm = Form.form(Livro.class);
 
@@ -45,10 +45,10 @@ public class Livros extends Controller {
         livro.save();
         flash("sucesso","Voto gravado com sucesso");
         if (quantVoto < 5){
-            return redirect(routes.Livros.list());
+            return redirect(routes.LivrosController.list());
         } else {
             quantVoto = 0;
-            return redirect(routes.Inicio.inicio());
+            return redirect(routes.UsuarioController.formCadastroUsuario());
         }
 
     }

@@ -2,6 +2,7 @@ package models;
 
 import play.db.ebean.Model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.LinkedHashMap;
@@ -10,6 +11,8 @@ import java.util.Map;
 /**
  * Created by gilmar on 07/06/14.
  */
+
+@Entity
 public class Usuario extends Model {
 
     @Id
