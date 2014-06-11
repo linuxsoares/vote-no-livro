@@ -3,7 +3,6 @@
 # ~~~~
 
 # Home page
-GET     /play                      controllers.ApplicationController.index()
 GET     /sobre                     controllers.InicioController.sobre()
 GET     /                          controllers.InicioController.inicio()
 
