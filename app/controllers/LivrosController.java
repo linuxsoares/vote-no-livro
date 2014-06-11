@@ -29,12 +29,12 @@ public class LivrosController extends Controller {
                 livros.add(Livro.find.findList().get(auxNum));
             }
         }
-        return ok(views.html.livros.render(livros));
+        return ok(views.html.livro.livros.render(livros));
     }
 
     public static Result listAll(){
         List<Livro> livros = Livro.find.all();
-        return ok(views.html.livros.render(livros));
+        return ok(views.html.livro.livros.render(livros));
     }
 
     public static Result voto(Long id){
@@ -51,5 +51,10 @@ public class LivrosController extends Controller {
             return redirect(routes.UsuarioController.formCadastroUsuario());
         }
 
+    }
+
+    public static Result listMaisVotados(){
+        List<Livro> livros = Livro.find.where().orderBy("voto desc").findList();
+        return ok(views.html.livro.maisvotados.render(livros));
     }
 }

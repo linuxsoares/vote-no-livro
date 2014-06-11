@@ -1,6 +1,6 @@
-@(usuarioForm : Form[Usuario])
+@(formUsuario : Form[Usuario])
 
-@main("Novo Usuario"){
+@inicio.main("Novo Usuario"){
     <style>
         body{
         padding-top: 50px;
@@ -10,18 +10,16 @@
         text-align: center;
         }
     </style>
-        @helper.form(action=routes.UsuarioController.salvarUsuario()){
+        @helper.form(action=routes.UsuarioController.salvarUsuario(), 'id -> "formUsuario"){
         <form class="form-horizontal">
             <fieldset>
                 <legend>Novo Usuario</legend>
                 <div class="control-group">
                     <div class="controls">
-                        @helper.inputText(usuarioForm("Nome"))
-                        <p class="help-block">informe o nome do usuario</p>
+                        @helper.inputText(formUsuario("nomeUsuario"), '_label -> "Nome", 'placeholder -> "Seu Nome")
                     </div>
                     <div class="controls">
-                        @helper.inputText(usuarioForm("Email"))
-                        <p class="help-block">informe o email do usuario</p>
+                        @helper.inputText(formUsuario("emailUsuario"), '_label -> "Email", 'type -> "email", 'placeholder -> "Seu E-mail")
                     </div>
                 </div>
                 }

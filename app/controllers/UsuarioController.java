@@ -11,22 +11,23 @@ import play.mvc.Result;
 
 public class UsuarioController extends Controller{
 
-    private static Form<Usuario> formUsuario = Form.form(Usuario.class);
+    private static final Form<Usuario> formUsuario = Form.form(Usuario.class);
 
     public static Result formCadastroUsuario() {
-        if (formUsuario.hasErrors()) {
-            flash("erro","Foram identificados problemas no cadastro");
-            return ok(views.html.usuario.render(formUsuario));
-        }
-        return ok(views.html.usuario.render(formUsuario));
+        return ok(views.html.usuario.usuario.render(formUsuario));
     }
 
     public static Result salvarUsuario(){
         Form<Usuario> form = formUsuario.bindFromRequest();
-        Usuario diretor = form.get();
-        diretor.save();
+        if (form.hasErrors()) {
+            flash("erro","Foram identificados problemas no cadastro");
+            return badRequest(views.html.usuario.usuario.render(form));
+        }
+        Usuario usuario = form.get();
+        usuario.save();
         flash("sucesso","Registro gravado com sucesso");
-        return redirect(routes.InicioController.inicio());
+        return redirect(routes.LivrosController.listMaisVotados());
     }
 
 }
+

@@ -4,7 +4,7 @@
 
 # Home page
 GET     /play                      controllers.ApplicationController.index()
-GET     /sobre                     controllers.ApplicationController.index()
+GET     /sobre                     controllers.InicioController.sobre()
 GET     /                          controllers.InicioController.inicio()
 
 GET     /lista                     controllers.LivrosController.list()
@@ -14,6 +14,8 @@ GET     /voto/:id                  controllers.LivrosController.voto(id:Long)
 
 POST     /usuario                  controllers.UsuarioController.salvarUsuario()
 GET      /usuario/novo             controllers.UsuarioController.formCadastroUsuario()
+
+GET      /maisvotados              controllers.LivrosController.listMaisVotados()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file              controllers.Assets.at(path="/public", file)

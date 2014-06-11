@@ -2,7 +2,7 @@ package controllers;
 
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.inicio;
+import views.html.inicio.inicio;
 
 /**
  * Created by gilmar on 05/06/14.
@@ -10,6 +10,8 @@ import views.html.inicio;
 public class InicioController extends Controller {
 
     public static Result inicio(){
-        return ok(views.html.inicio.render());
+        return ok(views.html.inicio.inicio.render());
     }
+
+    public static Result sobre() { return ok(views.html.inicio.sobre.render());}
 }
