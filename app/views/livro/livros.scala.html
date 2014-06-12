@@ -21,8 +21,8 @@
                 <tfoot>
                 @for(livro <- livros) {
                 <tr>
-                    <th><a href="#">@livro.titulo</a></th>
-                    <th><a href="#">@livro.voto</a></th>
+                    <th>@livro.titulo</th>
+                    <th>@livro.voto</th>
                     <th><a href="@routes.LivrosController.voto(livro.idLivro)">Vote aqui</a></th>
                 </tr>
                 }

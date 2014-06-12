@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import controllers.routes;
+import dao.LivrosDAO;
 import models.Livro;
 import play.data.Form;
 import play.mvc.Controller;
@@ -25,21 +26,20 @@ public class LivrosController extends Controller {
         Random random = new Random();
         for(int i = 0; livros.size() < 2; i++){
             int auxNum = random.nextInt(Livro.find.all().size());
-            if(!livros.contains(Livro.find.findList().get(auxNum))){
-                livros.add(Livro.find.findList().get(auxNum));
+            if(!livros.contains(LivrosDAO.getListAllLivros().get(auxNum))){
+                livros.add(LivrosDAO.getListAllLivros().get(auxNum));
             }
         }
         return ok(views.html.livro.livros.render(livros));
     }
 
     public static Result listAll(){
-        List<Livro> livros = Livro.find.all();
-        return ok(views.html.livro.livros.render(livros));
+        return ok(views.html.livro.livros.render(LivrosDAO.getListAllLivros()));
     }
 
     public static Result voto(Long id){
         quantVoto += 1;
-        Livro livro = Livro.find.byId(id);
+        Livro livro = LivrosDAO.getLivro(id);
         livro.voto += 1;
         livro.update(id);
         livro.save();
@@ -54,7 +54,6 @@ public class LivrosController extends Controller {
     }
 
     public static Result listMaisVotados(){
-        List<Livro> livros = Livro.find.where().orderBy("voto desc").findList();
-        return ok(views.html.livro.maisvotados.render(livros));
+        return ok(views.html.livro.maisvotados.render(LivrosDAO.getListMaisVotados()));
     }
 }

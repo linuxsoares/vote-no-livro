@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import controllers.LivrosController;
+import dao.LivrosDAO;
+import models.Livro;
 import org.junit.*;
 
 import play.mvc.*;
@@ -34,11 +37,45 @@ public class ApplicationTest {
     }
 
     @Test
-    public void renderTemplate() {
-        Content html = views.html.index.render("Your new application is ready.");
-        assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("Your new application is ready.");
+    public void testGetLivroId(){
+        running(fakeApplication(), new Runnable() {
+                    @Override
+                    public void run() {
+                        Assert.assertNotNull(Livro.find.byId(Long.parseLong("1")));
+                    }
+                });
     }
 
+    @Test
+    public void testGetAllLivros(){
+        running(fakeApplication(), new Runnable() {
+            @Override
+            public void run() {
+                Assert.assertNotNull(LivrosDAO.getListAllLivros());
+            }
+        });
+    }
+
+    @Test
+    public void testGetLivrosMaisVotados(){
+        running(fakeApplication(), new Runnable() {
+            @Override
+            public void run() {
+                Assert.assertNotNull(LivrosDAO.getListMaisVotados());
+            }
+        });
+    }
+
+    public void testCadastrarUsuario(){
+        running(testServer(9001, fakeApplication()), HTMLUNIT,
+                new Callback<TestBrowser>() {
+                    @Override
+                    public void invoke(TestBrowser testBrowser) throws Throwable {
+                        testBrowser.goTo("http://localhost:9000/usuario/novo");
+                        testBrowser.fill("input[name='nomeUsuario']").with("Gilmar");
+                        testBrowser.fill("input[name='emailUsuario']").with("linux.soares@gmail.com");
+                    }
+                });
+    }
 
 }
