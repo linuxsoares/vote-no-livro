@@ -26,6 +26,7 @@ public class Livro extends Model {
     public String autor;
     public String descricao;
     public int voto;
+    public int idVotoUsuario;
 
     public static Model.Finder<Long,Livro> find = new Model.Finder<Long,Livro>(Long.class,Livro.class);
 

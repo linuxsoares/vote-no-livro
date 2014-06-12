@@ -7,6 +7,7 @@ import java.util.Random;
 
 import controllers.routes;
 import dao.LivrosDAO;
+import dao.UsuarioDAO;
 import models.Livro;
 import play.data.Form;
 import play.mvc.Controller;
@@ -20,6 +21,7 @@ public class LivrosController extends Controller {
     private static final Form<Livro> livroForm = Form.form(Livro.class);
 
     static int quantVoto = 0;
+    static int idMaxVoto = 0;
 
     public static Result list(){
         List<Livro> livros = new LinkedList<Livro>();
@@ -39,12 +41,16 @@ public class LivrosController extends Controller {
 
     public static Result voto(Long id){
         quantVoto += 1;
+        if(quantVoto == 1){
+            idMaxVoto = UsuarioDAO.getMaxIdVotoUsuario() + 1;
+        }
         Livro livro = LivrosDAO.getLivro(id);
         livro.voto += 1;
+        livro.idVotoUsuario = idMaxVoto;
         livro.update(id);
         livro.save();
         flash("sucesso","Voto gravado com sucesso");
-        if (quantVoto < 5){
+        if (quantVoto < 3){
             return redirect(routes.LivrosController.list());
         } else {
             quantVoto = 0;
@@ -54,6 +60,6 @@ public class LivrosController extends Controller {
     }
 
     public static Result listMaisVotados(){
-        return ok(views.html.livro.maisvotados.render(LivrosDAO.getListMaisVotados()));
+        return ok(views.html.livro.maisvotados.render(LivrosDAO.getListMaisVotados(), LivrosDAO.getListVotoUsuario()));
     }
 }

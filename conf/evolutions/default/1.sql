@@ -1,3 +1,6 @@
+# --- Created by Ebean DDL
+# To stop Ebean DDL generation, remove this comment and start using Evolutions
+
 # --- !Ups
 
 create table livro (
@@ -6,6 +9,7 @@ create table livro (
   autor                     varchar(255),
   descricao                 varchar(255),
   voto                      integer,
+  id_voto_usuario           integer,
   constraint pk_livro primary key (id_livro))
 ;
 
@@ -25,13 +29,9 @@ create sequence usuario_seq;
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+drop table if exists livro cascade;
 
-drop table if exists livro;
-
-drop table if exists usuario;
-
-SET REFERENTIAL_INTEGRITY TRUE;
+drop table if exists usuario cascade;
 
 drop sequence if exists livro_seq;
 

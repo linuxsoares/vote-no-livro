@@ -21,4 +21,8 @@ public class LivrosDAO {
     public static List<Livro> getListAllLivros(){
         return Ebean.find(Livro.class).findList();
     }
+
+    public static List<Livro> getListVotoUsuario(){
+        return Livro.find.where().eq("id_voto_usuario",UsuarioDAO.getMaxIdVotoUsuario()).findList();
+    }
 }
