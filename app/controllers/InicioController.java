@@ -10,8 +10,14 @@ import views.html.inicio.inicio;
 public class InicioController extends Controller {
 
     public static Result inicio(){
+        return redirect(controllers.routes.LivrosController.list());
+    }
+
+    public static Result home(){
         return ok(views.html.inicio.inicio.render());
     }
 
-    public static Result sobre() { return ok(views.html.inicio.sobre.render());}
+    public static Result sobre() {
+        return ok(views.html.inicio.sobre.render());
+    }
 }

@@ -3,17 +3,22 @@
 # ~~~~
 
 # Home page
-GET     /sobre                     controllers.InicioController.sobre()
+GET     /home                      controllers.InicioController.home()
 GET     /                          controllers.InicioController.inicio()
 
-GET     /lista                     controllers.LivrosController.list()
+# Sobre
+GET     /sobre                     controllers.InicioController.sobre()
 
+#Vote no Livro
+GET     /vote-no-livro             controllers.LivrosController.list()
 POST    /voto/:id                  controllers.LivrosController.voto(id:Long)
 GET     /voto/:id                  controllers.LivrosController.voto(id:Long)
 
+#Usuarios
 POST     /usuario                  controllers.UsuarioController.salvarUsuario()
 GET      /usuario/novo             controllers.UsuarioController.formCadastroUsuario()
 
+#Mais Votados
 GET      /maisvotados              controllers.LivrosController.listMaisVotados()
 
 # Map static resources from the /public folder to the /assets URL path
